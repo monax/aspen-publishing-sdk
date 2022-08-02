@@ -1,0 +1,33 @@
+node_modules
+yarn-error.log
+
+# Generated
+.yarn_install
+ts-node
+
+# builds
+/dist
+pkg/*/dist
+.dist
+dist
+lib
+
+.DS_Store
+
+# Deploy
+deploy/pkg/*.tgz
+deploy/**/.uuid
+
+.vscode
+.idea
+asd.*
+
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+*.user
