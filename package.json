@@ -13,11 +13,7 @@
     "generate": "typechain --target=ethers-v5 --out-dir './src/contracts' './src/contracts/abi/*.json'",
     "build": "yarn tsc",
     "prettier": "prettier --write \"src/**/*.ts\"",
-    "lint": "tslint -p tsconfig.json",
-    "prepare": "yarn build",
-    "preversion": "yarn run lint",
-    "version": "yarn prettier && git add -A src",
-    "postversion": "git push && git push --tags"
+    "lint": "tslint -p tsconfig.json"
   },
   "dependencies": {
     "ethers": "^5.6.9"
