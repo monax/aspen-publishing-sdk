@@ -13,313 +13,548 @@ import type {
   PopulatedTransaction,
   Signer,
   utils,
-} from 'ethers';
-import type { FunctionFragment, Result, EventFragment } from '@ethersproject/abi';
-import type { Listener, Provider } from '@ethersproject/providers';
-import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent, PromiseOrValue } from './common';
+} from "ethers";
+import type {
+  FunctionFragment,
+  Result,
+  EventFragment,
+} from "@ethersproject/abi";
+import type { Listener, Provider } from "@ethersproject/providers";
+import type {
+  TypedEventFilter,
+  TypedEvent,
+  TypedListener,
+  OnEvent,
+  PromiseOrValue,
+} from "./common";
 
 export interface ERC721CedarLivemintInterface extends utils.Interface {
   functions: {
-    'ACCESS_ROLE()': FunctionFragment;
-    'DEFAULT_ADMIN_ROLE()': FunctionFragment;
-    'WHITELIST_ACCESS_ROLE()': FunctionFragment;
-    '_setFreeWhitelistMaxValues(uint64,uint64,uint64)': FunctionFragment;
-    '_setFreeWhitelistMerkleRoot(bytes32)': FunctionFragment;
-    '_setWhitelistMerkleRoot(bytes32)': FunctionFragment;
-    '_setWhitelistPrice(uint256)': FunctionFragment;
-    'approve(address,uint256)': FunctionFragment;
-    'balanceOf(address)': FunctionFragment;
-    'baseURI()': FunctionFragment;
-    'deleteRoyalties()': FunctionFragment;
-    'freeWhitelistCapPerWallet()': FunctionFragment;
-    'freeWhitelistMaxPerTx()': FunctionFragment;
-    'freeWhitelistMaxSupply()': FunctionFragment;
-    'getApproved(uint256)': FunctionFragment;
-    'getRoleAdmin(bytes32)': FunctionFragment;
-    'grantRole(bytes32,address)': FunctionFragment;
-    'hasRole(bytes32,address)': FunctionFragment;
-    'isApprovedForAll(address,address)': FunctionFragment;
-    'liveMint(uint64)': FunctionFragment;
-    'maxCapPerWallet()': FunctionFragment;
-    'mintCapPerWallet()': FunctionFragment;
-    'mintMaxPerTx()': FunctionFragment;
-    'mintPrice()': FunctionFragment;
-    'name()': FunctionFragment;
-    'ownerOf(uint256)': FunctionFragment;
-    'renounceRole(bytes32,address)': FunctionFragment;
-    'revokeRole(bytes32,address)': FunctionFragment;
-    'royaltyInfo(uint256,uint256)': FunctionFragment;
-    'safeTransferFrom(address,address,uint256)': FunctionFragment;
-    'safeTransferFrom(address,address,uint256,bytes)': FunctionFragment;
-    'setApprovalForAll(address,bool)': FunctionFragment;
-    'setMaxCapPerWallet(uint64)': FunctionFragment;
-    'setMaxLimit(uint256)': FunctionFragment;
-    'setMintMaxValues(uint64,uint64)': FunctionFragment;
-    'setMintPrice(uint256)': FunctionFragment;
-    'setRoyalties(address,uint96)': FunctionFragment;
-    'setStage(uint8)': FunctionFragment;
-    'setWhitelistMaxValues(uint64,uint64,uint64)': FunctionFragment;
-    'stage()': FunctionFragment;
-    'supportsInterface(bytes4)': FunctionFragment;
-    'symbol()': FunctionFragment;
-    'tokenURI(uint256)': FunctionFragment;
-    'totalSupply()': FunctionFragment;
-    'transferFrom(address,address,uint256)': FunctionFragment;
-    'upgradeBaseURI(string)': FunctionFragment;
-    'whitelistCapPerWallet()': FunctionFragment;
-    'whitelistMaxPerTx()': FunctionFragment;
-    'whitelistMaxSupply()': FunctionFragment;
-    'whitelistMint(uint64,bytes32[])': FunctionFragment;
-    'whitelistPrice()': FunctionFragment;
-    'withdraw()': FunctionFragment;
+    "ACCESS_ROLE()": FunctionFragment;
+    "DEFAULT_ADMIN_ROLE()": FunctionFragment;
+    "WHITELIST_ACCESS_ROLE()": FunctionFragment;
+    "_setFreeWhitelistMaxValues(uint64,uint64,uint64)": FunctionFragment;
+    "_setFreeWhitelistMerkleRoot(bytes32)": FunctionFragment;
+    "_setWhitelistMerkleRoot(bytes32)": FunctionFragment;
+    "_setWhitelistPrice(uint256)": FunctionFragment;
+    "approve(address,uint256)": FunctionFragment;
+    "balanceOf(address)": FunctionFragment;
+    "baseURI()": FunctionFragment;
+    "deleteRoyalties()": FunctionFragment;
+    "freeWhitelistCapPerWallet()": FunctionFragment;
+    "freeWhitelistMaxPerTx()": FunctionFragment;
+    "freeWhitelistMaxSupply()": FunctionFragment;
+    "getApproved(uint256)": FunctionFragment;
+    "getRoleAdmin(bytes32)": FunctionFragment;
+    "grantRole(bytes32,address)": FunctionFragment;
+    "hasRole(bytes32,address)": FunctionFragment;
+    "isApprovedForAll(address,address)": FunctionFragment;
+    "liveMint(uint64)": FunctionFragment;
+    "maxCapPerWallet()": FunctionFragment;
+    "mintCapPerWallet()": FunctionFragment;
+    "mintMaxPerTx()": FunctionFragment;
+    "mintPrice()": FunctionFragment;
+    "name()": FunctionFragment;
+    "ownerOf(uint256)": FunctionFragment;
+    "renounceRole(bytes32,address)": FunctionFragment;
+    "revokeRole(bytes32,address)": FunctionFragment;
+    "royaltyInfo(uint256,uint256)": FunctionFragment;
+    "safeTransferFrom(address,address,uint256)": FunctionFragment;
+    "safeTransferFrom(address,address,uint256,bytes)": FunctionFragment;
+    "setApprovalForAll(address,bool)": FunctionFragment;
+    "setMaxCapPerWallet(uint64)": FunctionFragment;
+    "setMaxLimit(uint256)": FunctionFragment;
+    "setMintMaxValues(uint64,uint64)": FunctionFragment;
+    "setMintPrice(uint256)": FunctionFragment;
+    "setRoyalties(address,uint96)": FunctionFragment;
+    "setStage(uint8)": FunctionFragment;
+    "setWhitelistMaxValues(uint64,uint64,uint64)": FunctionFragment;
+    "stage()": FunctionFragment;
+    "supportsInterface(bytes4)": FunctionFragment;
+    "symbol()": FunctionFragment;
+    "tokenURI(uint256)": FunctionFragment;
+    "totalSupply()": FunctionFragment;
+    "transferFrom(address,address,uint256)": FunctionFragment;
+    "upgradeBaseURI(string)": FunctionFragment;
+    "whitelistCapPerWallet()": FunctionFragment;
+    "whitelistMaxPerTx()": FunctionFragment;
+    "whitelistMaxSupply()": FunctionFragment;
+    "whitelistMint(uint64,bytes32[])": FunctionFragment;
+    "whitelistPrice()": FunctionFragment;
+    "withdraw()": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
-      | 'ACCESS_ROLE'
-      | 'DEFAULT_ADMIN_ROLE'
-      | 'WHITELIST_ACCESS_ROLE'
-      | '_setFreeWhitelistMaxValues'
-      | '_setFreeWhitelistMerkleRoot'
-      | '_setWhitelistMerkleRoot'
-      | '_setWhitelistPrice'
-      | 'approve'
-      | 'balanceOf'
-      | 'baseURI'
-      | 'deleteRoyalties'
-      | 'freeWhitelistCapPerWallet'
-      | 'freeWhitelistMaxPerTx'
-      | 'freeWhitelistMaxSupply'
-      | 'getApproved'
-      | 'getRoleAdmin'
-      | 'grantRole'
-      | 'hasRole'
-      | 'isApprovedForAll'
-      | 'liveMint'
-      | 'maxCapPerWallet'
-      | 'mintCapPerWallet'
-      | 'mintMaxPerTx'
-      | 'mintPrice'
-      | 'name'
-      | 'ownerOf'
-      | 'renounceRole'
-      | 'revokeRole'
-      | 'royaltyInfo'
-      | 'safeTransferFrom(address,address,uint256)'
-      | 'safeTransferFrom(address,address,uint256,bytes)'
-      | 'setApprovalForAll'
-      | 'setMaxCapPerWallet'
-      | 'setMaxLimit'
-      | 'setMintMaxValues'
-      | 'setMintPrice'
-      | 'setRoyalties'
-      | 'setStage'
-      | 'setWhitelistMaxValues'
-      | 'stage'
-      | 'supportsInterface'
-      | 'symbol'
-      | 'tokenURI'
-      | 'totalSupply'
-      | 'transferFrom'
-      | 'upgradeBaseURI'
-      | 'whitelistCapPerWallet'
-      | 'whitelistMaxPerTx'
-      | 'whitelistMaxSupply'
-      | 'whitelistMint'
-      | 'whitelistPrice'
-      | 'withdraw',
+      | "ACCESS_ROLE"
+      | "DEFAULT_ADMIN_ROLE"
+      | "WHITELIST_ACCESS_ROLE"
+      | "_setFreeWhitelistMaxValues"
+      | "_setFreeWhitelistMerkleRoot"
+      | "_setWhitelistMerkleRoot"
+      | "_setWhitelistPrice"
+      | "approve"
+      | "balanceOf"
+      | "baseURI"
+      | "deleteRoyalties"
+      | "freeWhitelistCapPerWallet"
+      | "freeWhitelistMaxPerTx"
+      | "freeWhitelistMaxSupply"
+      | "getApproved"
+      | "getRoleAdmin"
+      | "grantRole"
+      | "hasRole"
+      | "isApprovedForAll"
+      | "liveMint"
+      | "maxCapPerWallet"
+      | "mintCapPerWallet"
+      | "mintMaxPerTx"
+      | "mintPrice"
+      | "name"
+      | "ownerOf"
+      | "renounceRole"
+      | "revokeRole"
+      | "royaltyInfo"
+      | "safeTransferFrom(address,address,uint256)"
+      | "safeTransferFrom(address,address,uint256,bytes)"
+      | "setApprovalForAll"
+      | "setMaxCapPerWallet"
+      | "setMaxLimit"
+      | "setMintMaxValues"
+      | "setMintPrice"
+      | "setRoyalties"
+      | "setStage"
+      | "setWhitelistMaxValues"
+      | "stage"
+      | "supportsInterface"
+      | "symbol"
+      | "tokenURI"
+      | "totalSupply"
+      | "transferFrom"
+      | "upgradeBaseURI"
+      | "whitelistCapPerWallet"
+      | "whitelistMaxPerTx"
+      | "whitelistMaxSupply"
+      | "whitelistMint"
+      | "whitelistPrice"
+      | "withdraw"
   ): FunctionFragment;
 
-  encodeFunctionData(functionFragment: 'ACCESS_ROLE', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'DEFAULT_ADMIN_ROLE', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'WHITELIST_ACCESS_ROLE', values?: undefined): string;
   encodeFunctionData(
-    functionFragment: '_setFreeWhitelistMaxValues',
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>],
-  ): string;
-  encodeFunctionData(functionFragment: '_setFreeWhitelistMerkleRoot', values: [PromiseOrValue<BytesLike>]): string;
-  encodeFunctionData(functionFragment: '_setWhitelistMerkleRoot', values: [PromiseOrValue<BytesLike>]): string;
-  encodeFunctionData(functionFragment: '_setWhitelistPrice', values: [PromiseOrValue<BigNumberish>]): string;
-  encodeFunctionData(
-    functionFragment: 'approve',
-    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>],
-  ): string;
-  encodeFunctionData(functionFragment: 'balanceOf', values: [PromiseOrValue<string>]): string;
-  encodeFunctionData(functionFragment: 'baseURI', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'deleteRoyalties', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'freeWhitelistCapPerWallet', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'freeWhitelistMaxPerTx', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'freeWhitelistMaxSupply', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'getApproved', values: [PromiseOrValue<BigNumberish>]): string;
-  encodeFunctionData(functionFragment: 'getRoleAdmin', values: [PromiseOrValue<BytesLike>]): string;
-  encodeFunctionData(
-    functionFragment: 'grantRole',
-    values: [PromiseOrValue<BytesLike>, PromiseOrValue<string>],
-  ): string;
-  encodeFunctionData(functionFragment: 'hasRole', values: [PromiseOrValue<BytesLike>, PromiseOrValue<string>]): string;
-  encodeFunctionData(
-    functionFragment: 'isApprovedForAll',
-    values: [PromiseOrValue<string>, PromiseOrValue<string>],
-  ): string;
-  encodeFunctionData(functionFragment: 'liveMint', values: [PromiseOrValue<BigNumberish>]): string;
-  encodeFunctionData(functionFragment: 'maxCapPerWallet', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'mintCapPerWallet', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'mintMaxPerTx', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'mintPrice', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'name', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'ownerOf', values: [PromiseOrValue<BigNumberish>]): string;
-  encodeFunctionData(
-    functionFragment: 'renounceRole',
-    values: [PromiseOrValue<BytesLike>, PromiseOrValue<string>],
+    functionFragment: "ACCESS_ROLE",
+    values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: 'revokeRole',
-    values: [PromiseOrValue<BytesLike>, PromiseOrValue<string>],
+    functionFragment: "DEFAULT_ADMIN_ROLE",
+    values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: 'royaltyInfo',
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>],
+    functionFragment: "WHITELIST_ACCESS_ROLE",
+    values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: 'safeTransferFrom(address,address,uint256)',
-    values: [PromiseOrValue<string>, PromiseOrValue<string>, PromiseOrValue<BigNumberish>],
+    functionFragment: "_setFreeWhitelistMaxValues",
+    values: [
+      PromiseOrValue<BigNumberish>,
+      PromiseOrValue<BigNumberish>,
+      PromiseOrValue<BigNumberish>
+    ]
   ): string;
   encodeFunctionData(
-    functionFragment: 'safeTransferFrom(address,address,uint256,bytes)',
-    values: [PromiseOrValue<string>, PromiseOrValue<string>, PromiseOrValue<BigNumberish>, PromiseOrValue<BytesLike>],
+    functionFragment: "_setFreeWhitelistMerkleRoot",
+    values: [PromiseOrValue<BytesLike>]
   ): string;
   encodeFunctionData(
-    functionFragment: 'setApprovalForAll',
-    values: [PromiseOrValue<string>, PromiseOrValue<boolean>],
+    functionFragment: "_setWhitelistMerkleRoot",
+    values: [PromiseOrValue<BytesLike>]
   ): string;
-  encodeFunctionData(functionFragment: 'setMaxCapPerWallet', values: [PromiseOrValue<BigNumberish>]): string;
-  encodeFunctionData(functionFragment: 'setMaxLimit', values: [PromiseOrValue<BigNumberish>]): string;
   encodeFunctionData(
-    functionFragment: 'setMintMaxValues',
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>],
+    functionFragment: "_setWhitelistPrice",
+    values: [PromiseOrValue<BigNumberish>]
   ): string;
-  encodeFunctionData(functionFragment: 'setMintPrice', values: [PromiseOrValue<BigNumberish>]): string;
   encodeFunctionData(
-    functionFragment: 'setRoyalties',
-    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>],
+    functionFragment: "approve",
+    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
   ): string;
-  encodeFunctionData(functionFragment: 'setStage', values: [PromiseOrValue<BigNumberish>]): string;
   encodeFunctionData(
-    functionFragment: 'setWhitelistMaxValues',
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>],
+    functionFragment: "balanceOf",
+    values: [PromiseOrValue<string>]
   ): string;
-  encodeFunctionData(functionFragment: 'stage', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'supportsInterface', values: [PromiseOrValue<BytesLike>]): string;
-  encodeFunctionData(functionFragment: 'symbol', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'tokenURI', values: [PromiseOrValue<BigNumberish>]): string;
-  encodeFunctionData(functionFragment: 'totalSupply', values?: undefined): string;
+  encodeFunctionData(functionFragment: "baseURI", values?: undefined): string;
   encodeFunctionData(
-    functionFragment: 'transferFrom',
-    values: [PromiseOrValue<string>, PromiseOrValue<string>, PromiseOrValue<BigNumberish>],
+    functionFragment: "deleteRoyalties",
+    values?: undefined
   ): string;
-  encodeFunctionData(functionFragment: 'upgradeBaseURI', values: [PromiseOrValue<string>]): string;
-  encodeFunctionData(functionFragment: 'whitelistCapPerWallet', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'whitelistMaxPerTx', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'whitelistMaxSupply', values?: undefined): string;
   encodeFunctionData(
-    functionFragment: 'whitelistMint',
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BytesLike>[]],
+    functionFragment: "freeWhitelistCapPerWallet",
+    values?: undefined
   ): string;
-  encodeFunctionData(functionFragment: 'whitelistPrice', values?: undefined): string;
-  encodeFunctionData(functionFragment: 'withdraw', values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "freeWhitelistMaxPerTx",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "freeWhitelistMaxSupply",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getApproved",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getRoleAdmin",
+    values: [PromiseOrValue<BytesLike>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "grantRole",
+    values: [PromiseOrValue<BytesLike>, PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "hasRole",
+    values: [PromiseOrValue<BytesLike>, PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "isApprovedForAll",
+    values: [PromiseOrValue<string>, PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "liveMint",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "maxCapPerWallet",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "mintCapPerWallet",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "mintMaxPerTx",
+    values?: undefined
+  ): string;
+  encodeFunctionData(functionFragment: "mintPrice", values?: undefined): string;
+  encodeFunctionData(functionFragment: "name", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "ownerOf",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "renounceRole",
+    values: [PromiseOrValue<BytesLike>, PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "revokeRole",
+    values: [PromiseOrValue<BytesLike>, PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "royaltyInfo",
+    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "safeTransferFrom(address,address,uint256)",
+    values: [
+      PromiseOrValue<string>,
+      PromiseOrValue<string>,
+      PromiseOrValue<BigNumberish>
+    ]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "safeTransferFrom(address,address,uint256,bytes)",
+    values: [
+      PromiseOrValue<string>,
+      PromiseOrValue<string>,
+      PromiseOrValue<BigNumberish>,
+      PromiseOrValue<BytesLike>
+    ]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setApprovalForAll",
+    values: [PromiseOrValue<string>, PromiseOrValue<boolean>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setMaxCapPerWallet",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setMaxLimit",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setMintMaxValues",
+    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setMintPrice",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setRoyalties",
+    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setStage",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setWhitelistMaxValues",
+    values: [
+      PromiseOrValue<BigNumberish>,
+      PromiseOrValue<BigNumberish>,
+      PromiseOrValue<BigNumberish>
+    ]
+  ): string;
+  encodeFunctionData(functionFragment: "stage", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "supportsInterface",
+    values: [PromiseOrValue<BytesLike>]
+  ): string;
+  encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "tokenURI",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "totalSupply",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "transferFrom",
+    values: [
+      PromiseOrValue<string>,
+      PromiseOrValue<string>,
+      PromiseOrValue<BigNumberish>
+    ]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "upgradeBaseURI",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "whitelistCapPerWallet",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "whitelistMaxPerTx",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "whitelistMaxSupply",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "whitelistMint",
+    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BytesLike>[]]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "whitelistPrice",
+    values?: undefined
+  ): string;
+  encodeFunctionData(functionFragment: "withdraw", values?: undefined): string;
 
-  decodeFunctionResult(functionFragment: 'ACCESS_ROLE', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'DEFAULT_ADMIN_ROLE', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'WHITELIST_ACCESS_ROLE', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: '_setFreeWhitelistMaxValues', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: '_setFreeWhitelistMerkleRoot', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: '_setWhitelistMerkleRoot', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: '_setWhitelistPrice', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'approve', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'balanceOf', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'baseURI', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'deleteRoyalties', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'freeWhitelistCapPerWallet', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'freeWhitelistMaxPerTx', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'freeWhitelistMaxSupply', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getApproved', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getRoleAdmin', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'grantRole', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'hasRole', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'isApprovedForAll', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'liveMint', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'maxCapPerWallet', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'mintCapPerWallet', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'mintMaxPerTx', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'mintPrice', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'name', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'ownerOf', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'renounceRole', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'revokeRole', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'royaltyInfo', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'safeTransferFrom(address,address,uint256)', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'safeTransferFrom(address,address,uint256,bytes)', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'setApprovalForAll', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'setMaxCapPerWallet', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'setMaxLimit', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'setMintMaxValues', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'setMintPrice', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'setRoyalties', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'setStage', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'setWhitelistMaxValues', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'stage', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'supportsInterface', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'symbol', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'tokenURI', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'totalSupply', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'transferFrom', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'upgradeBaseURI', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'whitelistCapPerWallet', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'whitelistMaxPerTx', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'whitelistMaxSupply', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'whitelistMint', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'whitelistPrice', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'withdraw', data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "ACCESS_ROLE",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "DEFAULT_ADMIN_ROLE",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "WHITELIST_ACCESS_ROLE",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "_setFreeWhitelistMaxValues",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "_setFreeWhitelistMerkleRoot",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "_setWhitelistMerkleRoot",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "_setWhitelistPrice",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "baseURI", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "deleteRoyalties",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "freeWhitelistCapPerWallet",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "freeWhitelistMaxPerTx",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "freeWhitelistMaxSupply",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getApproved",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getRoleAdmin",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "grantRole", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "hasRole", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "isApprovedForAll",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "liveMint", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "maxCapPerWallet",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "mintCapPerWallet",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "mintMaxPerTx",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "mintPrice", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "renounceRole",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "revokeRole", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "royaltyInfo",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "safeTransferFrom(address,address,uint256)",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "safeTransferFrom(address,address,uint256,bytes)",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "setApprovalForAll",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "setMaxCapPerWallet",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "setMaxLimit",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "setMintMaxValues",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "setMintPrice",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "setRoyalties",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "setStage", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "setWhitelistMaxValues",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "stage", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "supportsInterface",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "tokenURI", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "totalSupply",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "transferFrom",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "upgradeBaseURI",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "whitelistCapPerWallet",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "whitelistMaxPerTx",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "whitelistMaxSupply",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "whitelistMint",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "whitelistPrice",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "withdraw", data: BytesLike): Result;
 
   events: {
-    'Approval(address,address,uint256)': EventFragment;
-    'ApprovalForAll(address,address,bool)': EventFragment;
-    'BaseURI(string)': EventFragment;
-    'FreeWhiteListStatus(bool)': EventFragment;
-    'FreeWhitelistMaxValues(uint64,uint64,uint64)': EventFragment;
-    'FreeWhitelistMerkeRoot(bytes32)': EventFragment;
-    'MaxCapPerWallet(uint64)': EventFragment;
-    'MaxLimit(uint256)': EventFragment;
-    'MintMaxValues(uint64,uint64)': EventFragment;
-    'MintPrice(uint256)': EventFragment;
-    'Received(address,uint256)': EventFragment;
-    'RoleAdminChanged(bytes32,bytes32,bytes32)': EventFragment;
-    'RoleGranted(bytes32,address,address)': EventFragment;
-    'RoleRevoked(bytes32,address,address)': EventFragment;
-    'Transfer(address,address,uint256)': EventFragment;
-    'WhiteListMaxValues(uint64,uint64,uint64)': EventFragment;
-    'WhitelistMerkeRoot(bytes32)': EventFragment;
-    'WhitelistPrice(uint256)': EventFragment;
+    "Approval(address,address,uint256)": EventFragment;
+    "ApprovalForAll(address,address,bool)": EventFragment;
+    "BaseURI(string)": EventFragment;
+    "FreeWhiteListStatus(bool)": EventFragment;
+    "FreeWhitelistMaxValues(uint64,uint64,uint64)": EventFragment;
+    "FreeWhitelistMerkeRoot(bytes32)": EventFragment;
+    "MaxCapPerWallet(uint64)": EventFragment;
+    "MaxLimit(uint256)": EventFragment;
+    "MintMaxValues(uint64,uint64)": EventFragment;
+    "MintPrice(uint256)": EventFragment;
+    "Received(address,uint256)": EventFragment;
+    "RoleAdminChanged(bytes32,bytes32,bytes32)": EventFragment;
+    "RoleGranted(bytes32,address,address)": EventFragment;
+    "RoleRevoked(bytes32,address,address)": EventFragment;
+    "Transfer(address,address,uint256)": EventFragment;
+    "WhiteListMaxValues(uint64,uint64,uint64)": EventFragment;
+    "WhitelistMerkeRoot(bytes32)": EventFragment;
+    "WhitelistPrice(uint256)": EventFragment;
   };
 
-  getEvent(nameOrSignatureOrTopic: 'Approval'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'ApprovalForAll'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'BaseURI'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'FreeWhiteListStatus'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'FreeWhitelistMaxValues'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'FreeWhitelistMerkeRoot'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'MaxCapPerWallet'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'MaxLimit'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'MintMaxValues'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'MintPrice'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'Received'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'RoleAdminChanged'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'RoleGranted'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'RoleRevoked'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'Transfer'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'WhiteListMaxValues'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'WhitelistMerkeRoot'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'WhitelistPrice'): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "ApprovalForAll"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "BaseURI"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "FreeWhiteListStatus"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "FreeWhitelistMaxValues"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "FreeWhitelistMerkeRoot"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "MaxCapPerWallet"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "MaxLimit"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "MintMaxValues"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "MintPrice"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Received"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "RoleAdminChanged"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "RoleGranted"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "RoleRevoked"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "WhiteListMaxValues"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "WhitelistMerkeRoot"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "WhitelistPrice"): EventFragment;
 }
 
 export interface ApprovalEventObject {
@@ -327,7 +562,10 @@ export interface ApprovalEventObject {
   approved: string;
   tokenId: BigNumber;
 }
-export type ApprovalEvent = TypedEvent<[string, string, BigNumber], ApprovalEventObject>;
+export type ApprovalEvent = TypedEvent<
+  [string, string, BigNumber],
+  ApprovalEventObject
+>;
 
 export type ApprovalEventFilter = TypedEventFilter<ApprovalEvent>;
 
@@ -336,7 +574,10 @@ export interface ApprovalForAllEventObject {
   operator: string;
   approved: boolean;
 }
-export type ApprovalForAllEvent = TypedEvent<[string, string, boolean], ApprovalForAllEventObject>;
+export type ApprovalForAllEvent = TypedEvent<
+  [string, string, boolean],
+  ApprovalForAllEventObject
+>;
 
 export type ApprovalForAllEventFilter = TypedEventFilter<ApprovalForAllEvent>;
 
@@ -350,9 +591,13 @@ export type BaseURIEventFilter = TypedEventFilter<BaseURIEvent>;
 export interface FreeWhiteListStatusEventObject {
   status: boolean;
 }
-export type FreeWhiteListStatusEvent = TypedEvent<[boolean], FreeWhiteListStatusEventObject>;
+export type FreeWhiteListStatusEvent = TypedEvent<
+  [boolean],
+  FreeWhiteListStatusEventObject
+>;
 
-export type FreeWhiteListStatusEventFilter = TypedEventFilter<FreeWhiteListStatusEvent>;
+export type FreeWhiteListStatusEventFilter =
+  TypedEventFilter<FreeWhiteListStatusEvent>;
 
 export interface FreeWhitelistMaxValuesEventObject {
   freeWhitelistCapPerWallet: BigNumber;
@@ -364,19 +609,27 @@ export type FreeWhitelistMaxValuesEvent = TypedEvent<
   FreeWhitelistMaxValuesEventObject
 >;
 
-export type FreeWhitelistMaxValuesEventFilter = TypedEventFilter<FreeWhitelistMaxValuesEvent>;
+export type FreeWhitelistMaxValuesEventFilter =
+  TypedEventFilter<FreeWhitelistMaxValuesEvent>;
 
 export interface FreeWhitelistMerkeRootEventObject {
   root: string;
 }
-export type FreeWhitelistMerkeRootEvent = TypedEvent<[string], FreeWhitelistMerkeRootEventObject>;
+export type FreeWhitelistMerkeRootEvent = TypedEvent<
+  [string],
+  FreeWhitelistMerkeRootEventObject
+>;
 
-export type FreeWhitelistMerkeRootEventFilter = TypedEventFilter<FreeWhitelistMerkeRootEvent>;
+export type FreeWhitelistMerkeRootEventFilter =
+  TypedEventFilter<FreeWhitelistMerkeRootEvent>;
 
 export interface MaxCapPerWalletEventObject {
   maxCapPerWallet: BigNumber;
 }
-export type MaxCapPerWalletEvent = TypedEvent<[BigNumber], MaxCapPerWalletEventObject>;
+export type MaxCapPerWalletEvent = TypedEvent<
+  [BigNumber],
+  MaxCapPerWalletEventObject
+>;
 
 export type MaxCapPerWalletEventFilter = TypedEventFilter<MaxCapPerWalletEvent>;
 
@@ -391,7 +644,10 @@ export interface MintMaxValuesEventObject {
   mintCapPerWallet: BigNumber;
   mintMaxPerTx: BigNumber;
 }
-export type MintMaxValuesEvent = TypedEvent<[BigNumber, BigNumber], MintMaxValuesEventObject>;
+export type MintMaxValuesEvent = TypedEvent<
+  [BigNumber, BigNumber],
+  MintMaxValuesEventObject
+>;
 
 export type MintMaxValuesEventFilter = TypedEventFilter<MintMaxValuesEvent>;
 
@@ -406,7 +662,10 @@ export interface ReceivedEventObject {
   sender: string;
   value: BigNumber;
 }
-export type ReceivedEvent = TypedEvent<[string, BigNumber], ReceivedEventObject>;
+export type ReceivedEvent = TypedEvent<
+  [string, BigNumber],
+  ReceivedEventObject
+>;
 
 export type ReceivedEventFilter = TypedEventFilter<ReceivedEvent>;
 
@@ -415,16 +674,23 @@ export interface RoleAdminChangedEventObject {
   previousAdminRole: string;
   newAdminRole: string;
 }
-export type RoleAdminChangedEvent = TypedEvent<[string, string, string], RoleAdminChangedEventObject>;
+export type RoleAdminChangedEvent = TypedEvent<
+  [string, string, string],
+  RoleAdminChangedEventObject
+>;
 
-export type RoleAdminChangedEventFilter = TypedEventFilter<RoleAdminChangedEvent>;
+export type RoleAdminChangedEventFilter =
+  TypedEventFilter<RoleAdminChangedEvent>;
 
 export interface RoleGrantedEventObject {
   role: string;
   account: string;
   sender: string;
 }
-export type RoleGrantedEvent = TypedEvent<[string, string, string], RoleGrantedEventObject>;
+export type RoleGrantedEvent = TypedEvent<
+  [string, string, string],
+  RoleGrantedEventObject
+>;
 
 export type RoleGrantedEventFilter = TypedEventFilter<RoleGrantedEvent>;
 
@@ -433,7 +699,10 @@ export interface RoleRevokedEventObject {
   account: string;
   sender: string;
 }
-export type RoleRevokedEvent = TypedEvent<[string, string, string], RoleRevokedEventObject>;
+export type RoleRevokedEvent = TypedEvent<
+  [string, string, string],
+  RoleRevokedEventObject
+>;
 
 export type RoleRevokedEventFilter = TypedEventFilter<RoleRevokedEvent>;
 
@@ -442,7 +711,10 @@ export interface TransferEventObject {
   to: string;
   tokenId: BigNumber;
 }
-export type TransferEvent = TypedEvent<[string, string, BigNumber], TransferEventObject>;
+export type TransferEvent = TypedEvent<
+  [string, string, BigNumber],
+  TransferEventObject
+>;
 
 export type TransferEventFilter = TypedEventFilter<TransferEvent>;
 
@@ -451,21 +723,32 @@ export interface WhiteListMaxValuesEventObject {
   whitelistMaxPerTx: BigNumber;
   whitelistMaxSupply: BigNumber;
 }
-export type WhiteListMaxValuesEvent = TypedEvent<[BigNumber, BigNumber, BigNumber], WhiteListMaxValuesEventObject>;
+export type WhiteListMaxValuesEvent = TypedEvent<
+  [BigNumber, BigNumber, BigNumber],
+  WhiteListMaxValuesEventObject
+>;
 
-export type WhiteListMaxValuesEventFilter = TypedEventFilter<WhiteListMaxValuesEvent>;
+export type WhiteListMaxValuesEventFilter =
+  TypedEventFilter<WhiteListMaxValuesEvent>;
 
 export interface WhitelistMerkeRootEventObject {
   root: string;
 }
-export type WhitelistMerkeRootEvent = TypedEvent<[string], WhitelistMerkeRootEventObject>;
+export type WhitelistMerkeRootEvent = TypedEvent<
+  [string],
+  WhitelistMerkeRootEventObject
+>;
 
-export type WhitelistMerkeRootEventFilter = TypedEventFilter<WhitelistMerkeRootEvent>;
+export type WhitelistMerkeRootEventFilter =
+  TypedEventFilter<WhitelistMerkeRootEvent>;
 
 export interface WhitelistPriceEventObject {
   whitelistPrice: BigNumber;
 }
-export type WhitelistPriceEvent = TypedEvent<[BigNumber], WhitelistPriceEventObject>;
+export type WhitelistPriceEvent = TypedEvent<
+  [BigNumber],
+  WhitelistPriceEventObject
+>;
 
 export type WhitelistPriceEventFilter = TypedEventFilter<WhitelistPriceEvent>;
 
@@ -479,12 +762,16 @@ export interface ERC721CedarLivemint extends BaseContract {
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
-    toBlock?: string | number | undefined,
+    toBlock?: string | number | undefined
   ): Promise<Array<TEvent>>;
 
-  listeners<TEvent extends TypedEvent>(eventFilter?: TypedEventFilter<TEvent>): Array<TypedListener<TEvent>>;
+  listeners<TEvent extends TypedEvent>(
+    eventFilter?: TypedEventFilter<TEvent>
+  ): Array<TypedListener<TEvent>>;
   listeners(eventName?: string): Array<Listener>;
-  removeAllListeners<TEvent extends TypedEvent>(eventFilter: TypedEventFilter<TEvent>): this;
+  removeAllListeners<TEvent extends TypedEvent>(
+    eventFilter: TypedEventFilter<TEvent>
+  ): this;
   removeAllListeners(eventName?: string): this;
   off: OnEvent<this>;
   on: OnEvent<this>;
@@ -511,7 +798,7 @@ export interface ERC721CedarLivemint extends BaseContract {
       _freeWhitelistCapPerWallet: PromiseOrValue<BigNumberish>,
       _freeWhitelistMaxPerTx: PromiseOrValue<BigNumberish>,
       _freeWhitelistMaxSupply: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -519,7 +806,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     _setFreeWhitelistMerkleRoot(
       _freeWhitelistRoot: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -527,7 +814,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     _setWhitelistMerkleRoot(
       _whitelistRoot: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -535,7 +822,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     _setWhitelistPrice(
       _whitelistPrice: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -544,13 +831,16 @@ export interface ERC721CedarLivemint extends BaseContract {
     approve(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     /**
      * See {IERC721-balanceOf}.
      */
-    balanceOf(owner: PromiseOrValue<string>, overrides?: CallOverrides): Promise<[BigNumber]>;
+    balanceOf(
+      owner: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
 
     /**
      * Stores the base uri
@@ -560,7 +850,9 @@ export interface ERC721CedarLivemint extends BaseContract {
     /**
      * this function deletes the royalty info
      */
-    deleteRoyalties(overrides?: Overrides & { from?: PromiseOrValue<string> }): Promise<ContractTransaction>;
+    deleteRoyalties(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
 
     /**
      * Stores max free whitelist cap
@@ -580,12 +872,18 @@ export interface ERC721CedarLivemint extends BaseContract {
     /**
      * See {IERC721-getApproved}.
      */
-    getApproved(tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[string]>;
+    getApproved(
+      tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
 
     /**
      * Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.
      */
-    getRoleAdmin(role: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<[string]>;
+    getRoleAdmin(
+      role: PromiseOrValue<BytesLike>,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
 
     /**
      * Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role.
@@ -593,7 +891,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     grantRole(
       role: PromiseOrValue<BytesLike>,
       account: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -602,7 +900,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     hasRole(
       role: PromiseOrValue<BytesLike>,
       account: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<[boolean]>;
 
     /**
@@ -611,7 +909,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     isApprovedForAll(
       owner: PromiseOrValue<string>,
       operator: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<[boolean]>;
 
     /**
@@ -619,7 +917,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     liveMint(
       _quantity: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> },
+      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -650,7 +948,10 @@ export interface ERC721CedarLivemint extends BaseContract {
     /**
      * See {IERC721-ownerOf}.
      */
-    ownerOf(tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[string]>;
+    ownerOf(
+      tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
 
     /**
      * Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been revoked `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`.
@@ -658,7 +959,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     renounceRole(
       role: PromiseOrValue<BytesLike>,
       account: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -667,7 +968,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     revokeRole(
       role: PromiseOrValue<BytesLike>,
       account: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -676,28 +977,28 @@ export interface ERC721CedarLivemint extends BaseContract {
     royaltyInfo(
       _tokenId: PromiseOrValue<BigNumberish>,
       _salePrice: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<[string, BigNumber]>;
 
     /**
      * See {IERC721-safeTransferFrom}.
      */
-    'safeTransferFrom(address,address,uint256)'(
+    "safeTransferFrom(address,address,uint256)"(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     /**
      * See {IERC721-safeTransferFrom}.
      */
-    'safeTransferFrom(address,address,uint256,bytes)'(
+    "safeTransferFrom(address,address,uint256,bytes)"(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
       _data: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -706,7 +1007,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     setApprovalForAll(
       operator: PromiseOrValue<string>,
       approved: PromiseOrValue<boolean>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -714,7 +1015,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     setMaxCapPerWallet(
       _maxCapPerWallet: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -722,7 +1023,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     setMaxLimit(
       _maxLimit: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -731,7 +1032,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     setMintMaxValues(
       _mintCapPerWallet: PromiseOrValue<BigNumberish>,
       _mintMaxPerTx: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -739,7 +1040,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     setMintPrice(
       _mintPrice: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -748,12 +1049,12 @@ export interface ERC721CedarLivemint extends BaseContract {
     setRoyalties(
       _receiver: PromiseOrValue<string>,
       _feeNumerator: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     setStage(
       _stage: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -763,12 +1064,15 @@ export interface ERC721CedarLivemint extends BaseContract {
       _whitelistCapPerWallet: PromiseOrValue<BigNumberish>,
       _whitelistMaxPerTx: PromiseOrValue<BigNumberish>,
       _whitelistMaxSupply: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     stage(overrides?: CallOverrides): Promise<[number]>;
 
-    supportsInterface(interfaceId: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<[boolean]>;
+    supportsInterface(
+      interfaceId: PromiseOrValue<BytesLike>,
+      overrides?: CallOverrides
+    ): Promise<[boolean]>;
 
     /**
      * See {IERC721Metadata-symbol}.
@@ -779,7 +1083,10 @@ export interface ERC721CedarLivemint extends BaseContract {
      * this function overrides the ERC721 tokenURI function. It returns the URI as `${baseURI}/${tokenId}`
      * gets token URI
      */
-    tokenURI(_tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[string]>;
+    tokenURI(
+      _tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
 
     /**
      * Burned tokens are calculated here, use _totalMinted() if you want to count just minted tokens.
@@ -793,7 +1100,7 @@ export interface ERC721CedarLivemint extends BaseContract {
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -802,7 +1109,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     upgradeBaseURI(
       baseURI_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -823,7 +1130,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     whitelistMint(
       _quantity: PromiseOrValue<BigNumberish>,
       _proof: PromiseOrValue<BytesLike>[],
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> },
+      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     /**
@@ -834,7 +1141,9 @@ export interface ERC721CedarLivemint extends BaseContract {
     /**
      * this function enables the owner to withdraw funds from the contract
      */
-    withdraw(overrides?: Overrides & { from?: PromiseOrValue<string> }): Promise<ContractTransaction>;
+    withdraw(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
   };
 
   /**
@@ -856,7 +1165,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     _freeWhitelistCapPerWallet: PromiseOrValue<BigNumberish>,
     _freeWhitelistMaxPerTx: PromiseOrValue<BigNumberish>,
     _freeWhitelistMaxSupply: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -864,7 +1173,7 @@ export interface ERC721CedarLivemint extends BaseContract {
    */
   _setFreeWhitelistMerkleRoot(
     _freeWhitelistRoot: PromiseOrValue<BytesLike>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -872,7 +1181,7 @@ export interface ERC721CedarLivemint extends BaseContract {
    */
   _setWhitelistMerkleRoot(
     _whitelistRoot: PromiseOrValue<BytesLike>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -880,7 +1189,7 @@ export interface ERC721CedarLivemint extends BaseContract {
    */
   _setWhitelistPrice(
     _whitelistPrice: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -889,13 +1198,16 @@ export interface ERC721CedarLivemint extends BaseContract {
   approve(
     to: PromiseOrValue<string>,
     tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   /**
    * See {IERC721-balanceOf}.
    */
-  balanceOf(owner: PromiseOrValue<string>, overrides?: CallOverrides): Promise<BigNumber>;
+  balanceOf(
+    owner: PromiseOrValue<string>,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
 
   /**
    * Stores the base uri
@@ -905,7 +1217,9 @@ export interface ERC721CedarLivemint extends BaseContract {
   /**
    * this function deletes the royalty info
    */
-  deleteRoyalties(overrides?: Overrides & { from?: PromiseOrValue<string> }): Promise<ContractTransaction>;
+  deleteRoyalties(
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
 
   /**
    * Stores max free whitelist cap
@@ -925,12 +1239,18 @@ export interface ERC721CedarLivemint extends BaseContract {
   /**
    * See {IERC721-getApproved}.
    */
-  getApproved(tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<string>;
+  getApproved(
+    tokenId: PromiseOrValue<BigNumberish>,
+    overrides?: CallOverrides
+  ): Promise<string>;
 
   /**
    * Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.
    */
-  getRoleAdmin(role: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<string>;
+  getRoleAdmin(
+    role: PromiseOrValue<BytesLike>,
+    overrides?: CallOverrides
+  ): Promise<string>;
 
   /**
    * Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role.
@@ -938,7 +1258,7 @@ export interface ERC721CedarLivemint extends BaseContract {
   grantRole(
     role: PromiseOrValue<BytesLike>,
     account: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -947,7 +1267,7 @@ export interface ERC721CedarLivemint extends BaseContract {
   hasRole(
     role: PromiseOrValue<BytesLike>,
     account: PromiseOrValue<string>,
-    overrides?: CallOverrides,
+    overrides?: CallOverrides
   ): Promise<boolean>;
 
   /**
@@ -956,7 +1276,7 @@ export interface ERC721CedarLivemint extends BaseContract {
   isApprovedForAll(
     owner: PromiseOrValue<string>,
     operator: PromiseOrValue<string>,
-    overrides?: CallOverrides,
+    overrides?: CallOverrides
   ): Promise<boolean>;
 
   /**
@@ -964,7 +1284,7 @@ export interface ERC721CedarLivemint extends BaseContract {
    */
   liveMint(
     _quantity: PromiseOrValue<BigNumberish>,
-    overrides?: PayableOverrides & { from?: PromiseOrValue<string> },
+    overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -995,7 +1315,10 @@ export interface ERC721CedarLivemint extends BaseContract {
   /**
    * See {IERC721-ownerOf}.
    */
-  ownerOf(tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<string>;
+  ownerOf(
+    tokenId: PromiseOrValue<BigNumberish>,
+    overrides?: CallOverrides
+  ): Promise<string>;
 
   /**
    * Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been revoked `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`.
@@ -1003,7 +1326,7 @@ export interface ERC721CedarLivemint extends BaseContract {
   renounceRole(
     role: PromiseOrValue<BytesLike>,
     account: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -1012,7 +1335,7 @@ export interface ERC721CedarLivemint extends BaseContract {
   revokeRole(
     role: PromiseOrValue<BytesLike>,
     account: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -1021,28 +1344,28 @@ export interface ERC721CedarLivemint extends BaseContract {
   royaltyInfo(
     _tokenId: PromiseOrValue<BigNumberish>,
     _salePrice: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides,
+    overrides?: CallOverrides
   ): Promise<[string, BigNumber]>;
 
   /**
    * See {IERC721-safeTransferFrom}.
    */
-  'safeTransferFrom(address,address,uint256)'(
+  "safeTransferFrom(address,address,uint256)"(
     from: PromiseOrValue<string>,
     to: PromiseOrValue<string>,
     tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   /**
    * See {IERC721-safeTransferFrom}.
    */
-  'safeTransferFrom(address,address,uint256,bytes)'(
+  "safeTransferFrom(address,address,uint256,bytes)"(
     from: PromiseOrValue<string>,
     to: PromiseOrValue<string>,
     tokenId: PromiseOrValue<BigNumberish>,
     _data: PromiseOrValue<BytesLike>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -1051,7 +1374,7 @@ export interface ERC721CedarLivemint extends BaseContract {
   setApprovalForAll(
     operator: PromiseOrValue<string>,
     approved: PromiseOrValue<boolean>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -1059,7 +1382,7 @@ export interface ERC721CedarLivemint extends BaseContract {
    */
   setMaxCapPerWallet(
     _maxCapPerWallet: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -1067,7 +1390,7 @@ export interface ERC721CedarLivemint extends BaseContract {
    */
   setMaxLimit(
     _maxLimit: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -1076,7 +1399,7 @@ export interface ERC721CedarLivemint extends BaseContract {
   setMintMaxValues(
     _mintCapPerWallet: PromiseOrValue<BigNumberish>,
     _mintMaxPerTx: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -1084,7 +1407,7 @@ export interface ERC721CedarLivemint extends BaseContract {
    */
   setMintPrice(
     _mintPrice: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -1093,12 +1416,12 @@ export interface ERC721CedarLivemint extends BaseContract {
   setRoyalties(
     _receiver: PromiseOrValue<string>,
     _feeNumerator: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   setStage(
     _stage: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -1108,12 +1431,15 @@ export interface ERC721CedarLivemint extends BaseContract {
     _whitelistCapPerWallet: PromiseOrValue<BigNumberish>,
     _whitelistMaxPerTx: PromiseOrValue<BigNumberish>,
     _whitelistMaxSupply: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   stage(overrides?: CallOverrides): Promise<number>;
 
-  supportsInterface(interfaceId: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<boolean>;
+  supportsInterface(
+    interfaceId: PromiseOrValue<BytesLike>,
+    overrides?: CallOverrides
+  ): Promise<boolean>;
 
   /**
    * See {IERC721Metadata-symbol}.
@@ -1124,7 +1450,10 @@ export interface ERC721CedarLivemint extends BaseContract {
    * this function overrides the ERC721 tokenURI function. It returns the URI as `${baseURI}/${tokenId}`
    * gets token URI
    */
-  tokenURI(_tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<string>;
+  tokenURI(
+    _tokenId: PromiseOrValue<BigNumberish>,
+    overrides?: CallOverrides
+  ): Promise<string>;
 
   /**
    * Burned tokens are calculated here, use _totalMinted() if you want to count just minted tokens.
@@ -1138,7 +1467,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     from: PromiseOrValue<string>,
     to: PromiseOrValue<string>,
     tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -1147,7 +1476,7 @@ export interface ERC721CedarLivemint extends BaseContract {
    */
   upgradeBaseURI(
     baseURI_: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> },
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -1168,7 +1497,7 @@ export interface ERC721CedarLivemint extends BaseContract {
   whitelistMint(
     _quantity: PromiseOrValue<BigNumberish>,
     _proof: PromiseOrValue<BytesLike>[],
-    overrides?: PayableOverrides & { from?: PromiseOrValue<string> },
+    overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   /**
@@ -1179,7 +1508,9 @@ export interface ERC721CedarLivemint extends BaseContract {
   /**
    * this function enables the owner to withdraw funds from the contract
    */
-  withdraw(overrides?: Overrides & { from?: PromiseOrValue<string> }): Promise<ContractTransaction>;
+  withdraw(
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
 
   callStatic: {
     /**
@@ -1201,7 +1532,7 @@ export interface ERC721CedarLivemint extends BaseContract {
       _freeWhitelistCapPerWallet: PromiseOrValue<BigNumberish>,
       _freeWhitelistMaxPerTx: PromiseOrValue<BigNumberish>,
       _freeWhitelistMaxSupply: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<void>;
 
     /**
@@ -1209,18 +1540,24 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     _setFreeWhitelistMerkleRoot(
       _freeWhitelistRoot: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<void>;
 
     /**
      * this function sets the merkle root hash for whitelist
      */
-    _setWhitelistMerkleRoot(_whitelistRoot: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<void>;
+    _setWhitelistMerkleRoot(
+      _whitelistRoot: PromiseOrValue<BytesLike>,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     /**
      * this function sets the whitelist price
      */
-    _setWhitelistPrice(_whitelistPrice: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
+    _setWhitelistPrice(
+      _whitelistPrice: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     /**
      * See {IERC721-approve}.
@@ -1228,13 +1565,16 @@ export interface ERC721CedarLivemint extends BaseContract {
     approve(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<void>;
 
     /**
      * See {IERC721-balanceOf}.
      */
-    balanceOf(owner: PromiseOrValue<string>, overrides?: CallOverrides): Promise<BigNumber>;
+    balanceOf(
+      owner: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     /**
      * Stores the base uri
@@ -1264,12 +1604,18 @@ export interface ERC721CedarLivemint extends BaseContract {
     /**
      * See {IERC721-getApproved}.
      */
-    getApproved(tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<string>;
+    getApproved(
+      tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<string>;
 
     /**
      * Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.
      */
-    getRoleAdmin(role: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<string>;
+    getRoleAdmin(
+      role: PromiseOrValue<BytesLike>,
+      overrides?: CallOverrides
+    ): Promise<string>;
 
     /**
      * Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role.
@@ -1277,7 +1623,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     grantRole(
       role: PromiseOrValue<BytesLike>,
       account: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<void>;
 
     /**
@@ -1286,7 +1632,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     hasRole(
       role: PromiseOrValue<BytesLike>,
       account: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<boolean>;
 
     /**
@@ -1295,13 +1641,16 @@ export interface ERC721CedarLivemint extends BaseContract {
     isApprovedForAll(
       owner: PromiseOrValue<string>,
       operator: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<boolean>;
 
     /**
      * this function handles the livemint and takes the number of tokens to mint. It executes the following checks: 1. Have required values been set? 2-5. Are the totals <= max values set? 6. Is the payment == price * number of tokens? 7. Is the merke proof verified? If all return true, increment quantity to total livemint for account Mint and transfer to account.
      */
-    liveMint(_quantity: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
+    liveMint(
+      _quantity: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     /**
      * Stores the maximum cap per wallet, includes both WL and live mints
@@ -1331,7 +1680,10 @@ export interface ERC721CedarLivemint extends BaseContract {
     /**
      * See {IERC721-ownerOf}.
      */
-    ownerOf(tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<string>;
+    ownerOf(
+      tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<string>;
 
     /**
      * Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been revoked `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`.
@@ -1339,7 +1691,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     renounceRole(
       role: PromiseOrValue<BytesLike>,
       account: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<void>;
 
     /**
@@ -1348,7 +1700,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     revokeRole(
       role: PromiseOrValue<BytesLike>,
       account: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<void>;
 
     /**
@@ -1357,28 +1709,28 @@ export interface ERC721CedarLivemint extends BaseContract {
     royaltyInfo(
       _tokenId: PromiseOrValue<BigNumberish>,
       _salePrice: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<[string, BigNumber]>;
 
     /**
      * See {IERC721-safeTransferFrom}.
      */
-    'safeTransferFrom(address,address,uint256)'(
+    "safeTransferFrom(address,address,uint256)"(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<void>;
 
     /**
      * See {IERC721-safeTransferFrom}.
      */
-    'safeTransferFrom(address,address,uint256,bytes)'(
+    "safeTransferFrom(address,address,uint256,bytes)"(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
       _data: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<void>;
 
     /**
@@ -1387,18 +1739,24 @@ export interface ERC721CedarLivemint extends BaseContract {
     setApprovalForAll(
       operator: PromiseOrValue<string>,
       approved: PromiseOrValue<boolean>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<void>;
 
     /**
      * this function sets max cap per wallet for both WL and mint
      */
-    setMaxCapPerWallet(_maxCapPerWallet: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
+    setMaxCapPerWallet(
+      _maxCapPerWallet: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     /**
      * this function sets the maximum total in a collection
      */
-    setMaxLimit(_maxLimit: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
+    setMaxLimit(
+      _maxLimit: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     /**
      * this function sets the max values for mint
@@ -1406,13 +1764,16 @@ export interface ERC721CedarLivemint extends BaseContract {
     setMintMaxValues(
       _mintCapPerWallet: PromiseOrValue<BigNumberish>,
       _mintMaxPerTx: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<void>;
 
     /**
      * this function sets the mint price
      */
-    setMintPrice(_mintPrice: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
+    setMintPrice(
+      _mintPrice: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     /**
      * this function sets the royalty percentage for the collection
@@ -1420,10 +1781,13 @@ export interface ERC721CedarLivemint extends BaseContract {
     setRoyalties(
       _receiver: PromiseOrValue<string>,
       _feeNumerator: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<void>;
 
-    setStage(_stage: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
+    setStage(
+      _stage: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     /**
      * this function sets the max values for whitelist
@@ -1432,12 +1796,15 @@ export interface ERC721CedarLivemint extends BaseContract {
       _whitelistCapPerWallet: PromiseOrValue<BigNumberish>,
       _whitelistMaxPerTx: PromiseOrValue<BigNumberish>,
       _whitelistMaxSupply: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<void>;
 
     stage(overrides?: CallOverrides): Promise<number>;
 
-    supportsInterface(interfaceId: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<boolean>;
+    supportsInterface(
+      interfaceId: PromiseOrValue<BytesLike>,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
 
     /**
      * See {IERC721Metadata-symbol}.
@@ -1448,7 +1815,10 @@ export interface ERC721CedarLivemint extends BaseContract {
      * this function overrides the ERC721 tokenURI function. It returns the URI as `${baseURI}/${tokenId}`
      * gets token URI
      */
-    tokenURI(_tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<string>;
+    tokenURI(
+      _tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<string>;
 
     /**
      * Burned tokens are calculated here, use _totalMinted() if you want to count just minted tokens.
@@ -1462,14 +1832,17 @@ export interface ERC721CedarLivemint extends BaseContract {
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<void>;
 
     /**
      * this function upgrades the baseURI. All token metadata is stored in the baseURI as a JSON
      * upgrades the baseURI
      */
-    upgradeBaseURI(baseURI_: PromiseOrValue<string>, overrides?: CallOverrides): Promise<void>;
+    upgradeBaseURI(
+      baseURI_: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     /**
      * Stores the max whitelist cap per wallet
@@ -1489,7 +1862,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     whitelistMint(
       _quantity: PromiseOrValue<BigNumberish>,
       _proof: PromiseOrValue<BytesLike>[],
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<void>;
 
     /**
@@ -1504,122 +1877,135 @@ export interface ERC721CedarLivemint extends BaseContract {
   };
 
   filters: {
-    'Approval(address,address,uint256)'(
+    "Approval(address,address,uint256)"(
       owner?: PromiseOrValue<string> | null,
       approved?: PromiseOrValue<string> | null,
-      tokenId?: PromiseOrValue<BigNumberish> | null,
+      tokenId?: PromiseOrValue<BigNumberish> | null
     ): ApprovalEventFilter;
     Approval(
       owner?: PromiseOrValue<string> | null,
       approved?: PromiseOrValue<string> | null,
-      tokenId?: PromiseOrValue<BigNumberish> | null,
+      tokenId?: PromiseOrValue<BigNumberish> | null
     ): ApprovalEventFilter;
 
-    'ApprovalForAll(address,address,bool)'(
+    "ApprovalForAll(address,address,bool)"(
       owner?: PromiseOrValue<string> | null,
       operator?: PromiseOrValue<string> | null,
-      approved?: null,
+      approved?: null
     ): ApprovalForAllEventFilter;
     ApprovalForAll(
       owner?: PromiseOrValue<string> | null,
       operator?: PromiseOrValue<string> | null,
-      approved?: null,
+      approved?: null
     ): ApprovalForAllEventFilter;
 
-    'BaseURI(string)'(baseURI?: null): BaseURIEventFilter;
+    "BaseURI(string)"(baseURI?: null): BaseURIEventFilter;
     BaseURI(baseURI?: null): BaseURIEventFilter;
 
-    'FreeWhiteListStatus(bool)'(status?: null): FreeWhiteListStatusEventFilter;
+    "FreeWhiteListStatus(bool)"(status?: null): FreeWhiteListStatusEventFilter;
     FreeWhiteListStatus(status?: null): FreeWhiteListStatusEventFilter;
 
-    'FreeWhitelistMaxValues(uint64,uint64,uint64)'(
+    "FreeWhitelistMaxValues(uint64,uint64,uint64)"(
       freeWhitelistCapPerWallet?: null,
       freeWhitelistMaxPerTx?: null,
-      freeWhitelistMaxSupply?: null,
+      freeWhitelistMaxSupply?: null
     ): FreeWhitelistMaxValuesEventFilter;
     FreeWhitelistMaxValues(
       freeWhitelistCapPerWallet?: null,
       freeWhitelistMaxPerTx?: null,
-      freeWhitelistMaxSupply?: null,
+      freeWhitelistMaxSupply?: null
     ): FreeWhitelistMaxValuesEventFilter;
 
-    'FreeWhitelistMerkeRoot(bytes32)'(root?: null): FreeWhitelistMerkeRootEventFilter;
+    "FreeWhitelistMerkeRoot(bytes32)"(
+      root?: null
+    ): FreeWhitelistMerkeRootEventFilter;
     FreeWhitelistMerkeRoot(root?: null): FreeWhitelistMerkeRootEventFilter;
 
-    'MaxCapPerWallet(uint64)'(maxCapPerWallet?: null): MaxCapPerWalletEventFilter;
+    "MaxCapPerWallet(uint64)"(
+      maxCapPerWallet?: null
+    ): MaxCapPerWalletEventFilter;
     MaxCapPerWallet(maxCapPerWallet?: null): MaxCapPerWalletEventFilter;
 
-    'MaxLimit(uint256)'(maxLimit?: null): MaxLimitEventFilter;
+    "MaxLimit(uint256)"(maxLimit?: null): MaxLimitEventFilter;
     MaxLimit(maxLimit?: null): MaxLimitEventFilter;
 
-    'MintMaxValues(uint64,uint64)'(mintCapPerWallet?: null, mintMaxPerTx?: null): MintMaxValuesEventFilter;
-    MintMaxValues(mintCapPerWallet?: null, mintMaxPerTx?: null): MintMaxValuesEventFilter;
+    "MintMaxValues(uint64,uint64)"(
+      mintCapPerWallet?: null,
+      mintMaxPerTx?: null
+    ): MintMaxValuesEventFilter;
+    MintMaxValues(
+      mintCapPerWallet?: null,
+      mintMaxPerTx?: null
+    ): MintMaxValuesEventFilter;
 
-    'MintPrice(uint256)'(mintPrice?: null): MintPriceEventFilter;
+    "MintPrice(uint256)"(mintPrice?: null): MintPriceEventFilter;
     MintPrice(mintPrice?: null): MintPriceEventFilter;
 
-    'Received(address,uint256)'(sender?: null, value?: null): ReceivedEventFilter;
+    "Received(address,uint256)"(
+      sender?: null,
+      value?: null
+    ): ReceivedEventFilter;
     Received(sender?: null, value?: null): ReceivedEventFilter;
 
-    'RoleAdminChanged(bytes32,bytes32,bytes32)'(
+    "RoleAdminChanged(bytes32,bytes32,bytes32)"(
       role?: PromiseOrValue<BytesLike> | null,
       previousAdminRole?: PromiseOrValue<BytesLike> | null,
-      newAdminRole?: PromiseOrValue<BytesLike> | null,
+      newAdminRole?: PromiseOrValue<BytesLike> | null
     ): RoleAdminChangedEventFilter;
     RoleAdminChanged(
       role?: PromiseOrValue<BytesLike> | null,
       previousAdminRole?: PromiseOrValue<BytesLike> | null,
-      newAdminRole?: PromiseOrValue<BytesLike> | null,
+      newAdminRole?: PromiseOrValue<BytesLike> | null
     ): RoleAdminChangedEventFilter;
 
-    'RoleGranted(bytes32,address,address)'(
+    "RoleGranted(bytes32,address,address)"(
       role?: PromiseOrValue<BytesLike> | null,
       account?: PromiseOrValue<string> | null,
-      sender?: PromiseOrValue<string> | null,
+      sender?: PromiseOrValue<string> | null
     ): RoleGrantedEventFilter;
     RoleGranted(
       role?: PromiseOrValue<BytesLike> | null,
       account?: PromiseOrValue<string> | null,
-      sender?: PromiseOrValue<string> | null,
+      sender?: PromiseOrValue<string> | null
     ): RoleGrantedEventFilter;
 
-    'RoleRevoked(bytes32,address,address)'(
+    "RoleRevoked(bytes32,address,address)"(
       role?: PromiseOrValue<BytesLike> | null,
       account?: PromiseOrValue<string> | null,
-      sender?: PromiseOrValue<string> | null,
+      sender?: PromiseOrValue<string> | null
     ): RoleRevokedEventFilter;
     RoleRevoked(
       role?: PromiseOrValue<BytesLike> | null,
       account?: PromiseOrValue<string> | null,
-      sender?: PromiseOrValue<string> | null,
+      sender?: PromiseOrValue<string> | null
     ): RoleRevokedEventFilter;
 
-    'Transfer(address,address,uint256)'(
+    "Transfer(address,address,uint256)"(
       from?: PromiseOrValue<string> | null,
       to?: PromiseOrValue<string> | null,
-      tokenId?: PromiseOrValue<BigNumberish> | null,
+      tokenId?: PromiseOrValue<BigNumberish> | null
     ): TransferEventFilter;
     Transfer(
       from?: PromiseOrValue<string> | null,
       to?: PromiseOrValue<string> | null,
-      tokenId?: PromiseOrValue<BigNumberish> | null,
+      tokenId?: PromiseOrValue<BigNumberish> | null
     ): TransferEventFilter;
 
-    'WhiteListMaxValues(uint64,uint64,uint64)'(
+    "WhiteListMaxValues(uint64,uint64,uint64)"(
       whitelistCapPerWallet?: null,
       whitelistMaxPerTx?: null,
-      whitelistMaxSupply?: null,
+      whitelistMaxSupply?: null
     ): WhiteListMaxValuesEventFilter;
     WhiteListMaxValues(
       whitelistCapPerWallet?: null,
       whitelistMaxPerTx?: null,
-      whitelistMaxSupply?: null,
+      whitelistMaxSupply?: null
     ): WhiteListMaxValuesEventFilter;
 
-    'WhitelistMerkeRoot(bytes32)'(root?: null): WhitelistMerkeRootEventFilter;
+    "WhitelistMerkeRoot(bytes32)"(root?: null): WhitelistMerkeRootEventFilter;
     WhitelistMerkeRoot(root?: null): WhitelistMerkeRootEventFilter;
 
-    'WhitelistPrice(uint256)'(whitelistPrice?: null): WhitelistPriceEventFilter;
+    "WhitelistPrice(uint256)"(whitelistPrice?: null): WhitelistPriceEventFilter;
     WhitelistPrice(whitelistPrice?: null): WhitelistPriceEventFilter;
   };
 
@@ -1643,7 +2029,7 @@ export interface ERC721CedarLivemint extends BaseContract {
       _freeWhitelistCapPerWallet: PromiseOrValue<BigNumberish>,
       _freeWhitelistMaxPerTx: PromiseOrValue<BigNumberish>,
       _freeWhitelistMaxSupply: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1651,7 +2037,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     _setFreeWhitelistMerkleRoot(
       _freeWhitelistRoot: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1659,7 +2045,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     _setWhitelistMerkleRoot(
       _whitelistRoot: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1667,7 +2053,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     _setWhitelistPrice(
       _whitelistPrice: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1676,13 +2062,16 @@ export interface ERC721CedarLivemint extends BaseContract {
     approve(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     /**
      * See {IERC721-balanceOf}.
      */
-    balanceOf(owner: PromiseOrValue<string>, overrides?: CallOverrides): Promise<BigNumber>;
+    balanceOf(
+      owner: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     /**
      * Stores the base uri
@@ -1692,7 +2081,9 @@ export interface ERC721CedarLivemint extends BaseContract {
     /**
      * this function deletes the royalty info
      */
-    deleteRoyalties(overrides?: Overrides & { from?: PromiseOrValue<string> }): Promise<BigNumber>;
+    deleteRoyalties(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
 
     /**
      * Stores max free whitelist cap
@@ -1712,12 +2103,18 @@ export interface ERC721CedarLivemint extends BaseContract {
     /**
      * See {IERC721-getApproved}.
      */
-    getApproved(tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<BigNumber>;
+    getApproved(
+      tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     /**
      * Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.
      */
-    getRoleAdmin(role: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<BigNumber>;
+    getRoleAdmin(
+      role: PromiseOrValue<BytesLike>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     /**
      * Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role.
@@ -1725,7 +2122,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     grantRole(
       role: PromiseOrValue<BytesLike>,
       account: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1734,7 +2131,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     hasRole(
       role: PromiseOrValue<BytesLike>,
       account: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     /**
@@ -1743,7 +2140,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     isApprovedForAll(
       owner: PromiseOrValue<string>,
       operator: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     /**
@@ -1751,7 +2148,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     liveMint(
       _quantity: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> },
+      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1782,7 +2179,10 @@ export interface ERC721CedarLivemint extends BaseContract {
     /**
      * See {IERC721-ownerOf}.
      */
-    ownerOf(tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<BigNumber>;
+    ownerOf(
+      tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     /**
      * Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been revoked `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`.
@@ -1790,7 +2190,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     renounceRole(
       role: PromiseOrValue<BytesLike>,
       account: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1799,7 +2199,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     revokeRole(
       role: PromiseOrValue<BytesLike>,
       account: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1808,28 +2208,28 @@ export interface ERC721CedarLivemint extends BaseContract {
     royaltyInfo(
       _tokenId: PromiseOrValue<BigNumberish>,
       _salePrice: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     /**
      * See {IERC721-safeTransferFrom}.
      */
-    'safeTransferFrom(address,address,uint256)'(
+    "safeTransferFrom(address,address,uint256)"(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     /**
      * See {IERC721-safeTransferFrom}.
      */
-    'safeTransferFrom(address,address,uint256,bytes)'(
+    "safeTransferFrom(address,address,uint256,bytes)"(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
       _data: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1838,7 +2238,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     setApprovalForAll(
       operator: PromiseOrValue<string>,
       approved: PromiseOrValue<boolean>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1846,7 +2246,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     setMaxCapPerWallet(
       _maxCapPerWallet: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1854,7 +2254,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     setMaxLimit(
       _maxLimit: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1863,7 +2263,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     setMintMaxValues(
       _mintCapPerWallet: PromiseOrValue<BigNumberish>,
       _mintMaxPerTx: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1871,7 +2271,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     setMintPrice(
       _mintPrice: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1880,12 +2280,12 @@ export interface ERC721CedarLivemint extends BaseContract {
     setRoyalties(
       _receiver: PromiseOrValue<string>,
       _feeNumerator: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     setStage(
       _stage: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1895,12 +2295,15 @@ export interface ERC721CedarLivemint extends BaseContract {
       _whitelistCapPerWallet: PromiseOrValue<BigNumberish>,
       _whitelistMaxPerTx: PromiseOrValue<BigNumberish>,
       _whitelistMaxSupply: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     stage(overrides?: CallOverrides): Promise<BigNumber>;
 
-    supportsInterface(interfaceId: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<BigNumber>;
+    supportsInterface(
+      interfaceId: PromiseOrValue<BytesLike>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     /**
      * See {IERC721Metadata-symbol}.
@@ -1911,7 +2314,10 @@ export interface ERC721CedarLivemint extends BaseContract {
      * this function overrides the ERC721 tokenURI function. It returns the URI as `${baseURI}/${tokenId}`
      * gets token URI
      */
-    tokenURI(_tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<BigNumber>;
+    tokenURI(
+      _tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     /**
      * Burned tokens are calculated here, use _totalMinted() if you want to count just minted tokens.
@@ -1925,7 +2331,7 @@ export interface ERC721CedarLivemint extends BaseContract {
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1934,7 +2340,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     upgradeBaseURI(
       baseURI_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1955,7 +2361,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     whitelistMint(
       _quantity: PromiseOrValue<BigNumberish>,
       _proof: PromiseOrValue<BytesLike>[],
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> },
+      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     /**
@@ -1966,7 +2372,9 @@ export interface ERC721CedarLivemint extends BaseContract {
     /**
      * this function enables the owner to withdraw funds from the contract
      */
-    withdraw(overrides?: Overrides & { from?: PromiseOrValue<string> }): Promise<BigNumber>;
+    withdraw(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
   };
 
   populateTransaction: {
@@ -1975,12 +2383,16 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     ACCESS_ROLE(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    DEFAULT_ADMIN_ROLE(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    DEFAULT_ADMIN_ROLE(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     /**
      * Access role
      */
-    WHITELIST_ACCESS_ROLE(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    WHITELIST_ACCESS_ROLE(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     /**
      * this function sets the max values for free whitelist
@@ -1989,7 +2401,7 @@ export interface ERC721CedarLivemint extends BaseContract {
       _freeWhitelistCapPerWallet: PromiseOrValue<BigNumberish>,
       _freeWhitelistMaxPerTx: PromiseOrValue<BigNumberish>,
       _freeWhitelistMaxSupply: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     /**
@@ -1997,7 +2409,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     _setFreeWhitelistMerkleRoot(
       _freeWhitelistRoot: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     /**
@@ -2005,7 +2417,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     _setWhitelistMerkleRoot(
       _whitelistRoot: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     /**
@@ -2013,7 +2425,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     _setWhitelistPrice(
       _whitelistPrice: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     /**
@@ -2022,13 +2434,16 @@ export interface ERC721CedarLivemint extends BaseContract {
     approve(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     /**
      * See {IERC721-balanceOf}.
      */
-    balanceOf(owner: PromiseOrValue<string>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    balanceOf(
+      owner: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     /**
      * Stores the base uri
@@ -2038,32 +2453,46 @@ export interface ERC721CedarLivemint extends BaseContract {
     /**
      * this function deletes the royalty info
      */
-    deleteRoyalties(overrides?: Overrides & { from?: PromiseOrValue<string> }): Promise<PopulatedTransaction>;
+    deleteRoyalties(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
 
     /**
      * Stores max free whitelist cap
      */
-    freeWhitelistCapPerWallet(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    freeWhitelistCapPerWallet(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     /**
      * Store free whitelist max per transaction
      */
-    freeWhitelistMaxPerTx(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    freeWhitelistMaxPerTx(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     /**
      * Stores the max free whitelist supply
      */
-    freeWhitelistMaxSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    freeWhitelistMaxSupply(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     /**
      * See {IERC721-getApproved}.
      */
-    getApproved(tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    getApproved(
+      tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     /**
      * Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.
      */
-    getRoleAdmin(role: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    getRoleAdmin(
+      role: PromiseOrValue<BytesLike>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     /**
      * Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role.
@@ -2071,7 +2500,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     grantRole(
       role: PromiseOrValue<BytesLike>,
       account: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     /**
@@ -2080,7 +2509,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     hasRole(
       role: PromiseOrValue<BytesLike>,
       account: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     /**
@@ -2089,7 +2518,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     isApprovedForAll(
       owner: PromiseOrValue<string>,
       operator: PromiseOrValue<string>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     /**
@@ -2097,7 +2526,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     liveMint(
       _quantity: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> },
+      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     /**
@@ -2128,7 +2557,10 @@ export interface ERC721CedarLivemint extends BaseContract {
     /**
      * See {IERC721-ownerOf}.
      */
-    ownerOf(tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    ownerOf(
+      tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     /**
      * Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been revoked `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`.
@@ -2136,7 +2568,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     renounceRole(
       role: PromiseOrValue<BytesLike>,
       account: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     /**
@@ -2145,7 +2577,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     revokeRole(
       role: PromiseOrValue<BytesLike>,
       account: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     /**
@@ -2154,28 +2586,28 @@ export interface ERC721CedarLivemint extends BaseContract {
     royaltyInfo(
       _tokenId: PromiseOrValue<BigNumberish>,
       _salePrice: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     /**
      * See {IERC721-safeTransferFrom}.
      */
-    'safeTransferFrom(address,address,uint256)'(
+    "safeTransferFrom(address,address,uint256)"(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     /**
      * See {IERC721-safeTransferFrom}.
      */
-    'safeTransferFrom(address,address,uint256,bytes)'(
+    "safeTransferFrom(address,address,uint256,bytes)"(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
       _data: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     /**
@@ -2184,7 +2616,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     setApprovalForAll(
       operator: PromiseOrValue<string>,
       approved: PromiseOrValue<boolean>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     /**
@@ -2192,7 +2624,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     setMaxCapPerWallet(
       _maxCapPerWallet: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     /**
@@ -2200,7 +2632,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     setMaxLimit(
       _maxLimit: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     /**
@@ -2209,7 +2641,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     setMintMaxValues(
       _mintCapPerWallet: PromiseOrValue<BigNumberish>,
       _mintMaxPerTx: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     /**
@@ -2217,7 +2649,7 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     setMintPrice(
       _mintPrice: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     /**
@@ -2226,12 +2658,12 @@ export interface ERC721CedarLivemint extends BaseContract {
     setRoyalties(
       _receiver: PromiseOrValue<string>,
       _feeNumerator: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     setStage(
       _stage: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     /**
@@ -2241,12 +2673,15 @@ export interface ERC721CedarLivemint extends BaseContract {
       _whitelistCapPerWallet: PromiseOrValue<BigNumberish>,
       _whitelistMaxPerTx: PromiseOrValue<BigNumberish>,
       _whitelistMaxSupply: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     stage(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    supportsInterface(interfaceId: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    supportsInterface(
+      interfaceId: PromiseOrValue<BytesLike>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     /**
      * See {IERC721Metadata-symbol}.
@@ -2257,7 +2692,10 @@ export interface ERC721CedarLivemint extends BaseContract {
      * this function overrides the ERC721 tokenURI function. It returns the URI as `${baseURI}/${tokenId}`
      * gets token URI
      */
-    tokenURI(_tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    tokenURI(
+      _tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     /**
      * Burned tokens are calculated here, use _totalMinted() if you want to count just minted tokens.
@@ -2271,7 +2709,7 @@ export interface ERC721CedarLivemint extends BaseContract {
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     /**
@@ -2280,20 +2718,24 @@ export interface ERC721CedarLivemint extends BaseContract {
      */
     upgradeBaseURI(
       baseURI_: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> },
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     /**
      * Stores the max whitelist cap per wallet
      */
-    whitelistCapPerWallet(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    whitelistCapPerWallet(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     whitelistMaxPerTx(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     /**
      * Stores the max whitelist supply
      */
-    whitelistMaxSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    whitelistMaxSupply(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     /**
      * this function handles the whitelist mint and takes the number of tokens to mint and proof. It executes the following checks: 1. Have required values been set? 2-5. Are the totals <= max values set? 6. Is the payment == price * number of tokens? 7. Is the merke proof verified? If all return true, increment quantity to total whitelist mint for account and total whitelist mint. Mint and transfer to account.
@@ -2301,7 +2743,7 @@ export interface ERC721CedarLivemint extends BaseContract {
     whitelistMint(
       _quantity: PromiseOrValue<BigNumberish>,
       _proof: PromiseOrValue<BytesLike>[],
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> },
+      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     /**
@@ -2312,6 +2754,8 @@ export interface ERC721CedarLivemint extends BaseContract {
     /**
      * this function enables the owner to withdraw funds from the contract
      */
-    withdraw(overrides?: Overrides & { from?: PromiseOrValue<string> }): Promise<PopulatedTransaction>;
+    withdraw(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
   };
 }
