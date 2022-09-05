@@ -23,5 +23,15 @@
   },
   "files": [
     "lib/**/*"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monax/aspen-publishing-sdk.git#main"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/monax/aspen-publishing-sdk/issues"
+  },
+  "homepage": "https://github.com/monax/aspen-publishing-sdk/tree/main#readme"
 }
