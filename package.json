@@ -1,10 +1,10 @@
 {
-  "name": "@monax/aspen",
-  "version": "0.0.0",
+  "name": "@monaxlabss/aspen-publishing-sdk",
+  "version": "0.0.1",
   "author": "Monax",
   "repository": {
     "type": "git",
-    "url": "git+git@github.com:monax/aspen-publishing-sdk.git"
+    "url": "git+ssh://git@github.com/monax/aspen-publishing-sdk.git"
   },
   "license": "UNLICENSED",
   "packageManager": "yarn@3.2.1",
@@ -13,5 +13,14 @@
       "pkg/sdk",
       "pkg/examples/react"
     ]
+  },
+  "description": "Aspen Publishing SDK is a developer-friendly interface where developers/creators/clients can interact with Aspen's Publishing contracts out-of-the-box.",
+  "bugs": {
+    "url": "https://github.com/monax/aspen-publishing-sdk/issues"
+  },
+  "homepage": "https://github.com/monax/aspen-publishing-sdk#readme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
